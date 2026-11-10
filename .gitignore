@@ -1,0 +1,82 @@
+# ==========================================
+# NeuroLens Git Ignore Configuration
+# ==========================================
+
+# Environments & Secrets
+.env
+.env.*
+*.env
+*.pem
+*.key
+.streamlit/secrets.toml
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Temporary & Backup Files
+*.bak
+*.bak*
+*.tmp
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Preserved Backups & Archives
+archive/
+preserved_source_backups/
+*.zip
+*.tar.gz
+
+# Inactive Models (Active model is explicitly tracked)
+models/*
+!models/mobilenet_two_stage_final_unweighted.keras
+
+# Large Generated Reports, Image Contact Sheets & Screenshots
+reports/dataset_integrity/
+reports/evaluation/
+qa/screenshots/
+*.log
+
+# Matplotlib & Font Cache
+.matplotlib/
+
+# Additional GitHub Repository Exclusions
+# ==========================================
+
+# Internal QA and generated research reports
+qa/
+reports/
+AUDIT_REPORT.md
+
+# Test Coverage & Additional Caches
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+
+# Historical notebooks and internal development scripts
+notebooks/
+
+scripts/*
+!scripts/gradcam_explainer.py
+!scripts/generate_architecture_diagram.py

@@ -1,0 +1,85 @@
+# ==========================================
+# NeuroLens Docker Context Ignore Rules
+# Keeps context minimal (~25 MB vs >360 MB)
+# ==========================================
+
+# Version control
+.git
+.git/**
+.gitignore
+
+# Virtual Environments
+.venv
+.venv/**
+venv
+venv/**
+env
+env/**
+ENV
+ENV/**
+
+# Python Cache & Bytecode
+__pycache__
+__pycache__/**
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache
+.pytest_cache/**
+
+# Jupyter Notebook Checkpoints & Notebooks
+.ipynb_checkpoints
+.ipynb_checkpoints/**
+*/.ipynb_checkpoints/*
+notebooks
+notebooks/**
+
+# Preserved Archives & Backups
+archive
+archive/**
+backups
+backups/**
+preserved_source_backups
+preserved_source_backups/**
+*.zip
+*.tar.gz
+*.bak
+*.bak*
+
+# Large Audit Reports, Contact Sheets & QA Assets
+reports
+reports/**
+qa
+qa/**
+
+# Offline Training & Audit Scripts (gradcam_explainer.py is kept)
+scripts/audit_*
+scripts/make_*
+scripts/save_*
+scripts/inspect_*
+scripts/check_*
+scripts/evaluate_*
+scripts/reclassify_*
+scripts/build_*
+scripts/generate_*
+scripts/analyse_*
+scripts/deep_*
+scripts/prepare_*
+scripts/test_*
+scripts/run_*
+scripts/verify_*
+scripts/capture_*
+scripts/render_*
+scripts/dataset_loader.py
+scripts/retrain_mobilenet.py
+
+# Documentation & Audit Notes
+AUDIT_REPORT.md
+*.md
+!README.md
+
+# Logs & Temporary Files
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini

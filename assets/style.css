@@ -1,0 +1,559 @@
+/* ==========================================================================
+   Brain Tumor Detection AI — Professional Dark Theme CSS
+   Modern SaaS & Medical Imaging Prototype Interface
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ----- Base Typography & Global Reset ----- */
+html, body, [class*="css"], .stApp {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    color: #94A3B8;
+}
+
+/* ----- Background & Canvas ----- */
+.stApp {
+    background-color: #080C14 !important;
+    background-image: 
+        radial-gradient(circle at 18% -10%, rgba(14, 165, 233, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 82% 0%, rgba(99, 102, 241, 0.06) 0%, transparent 45%) !important;
+    background-attachment: fixed;
+}
+
+/* ----- Streamlit Chrome & Toolbar Cleanup ----- */
+header[data-testid="stHeader"] {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+div[data-testid="stToolbar"] {
+    visibility: hidden !important;
+    height: 0 !important;
+}
+div[data-testid="stDecoration"] {
+    display: none !important;
+}
+#MainMenu, footer {
+    visibility: hidden !important;
+}
+
+/* Container Padding Adjustment */
+.block-container {
+    padding-top: 1.5rem !important;
+    padding-bottom: 3rem !important;
+    max-width: 1240px !important;
+}
+
+/* ----- Typography Styling ----- */
+h1, h2, h3, h4, h5, h6 {
+    color: #F8FAFC !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+}
+
+p, span, label, li {
+    color: #94A3B8;
+}
+
+/* ----- Left Sidebar ----- */
+section[data-testid="stSidebar"] {
+    background-color: #0A0F1D !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+section[data-testid="stSidebar"] div.block-container {
+    padding-top: 1.5rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+}
+
+/* Sidebar Brand Header */
+.sidebar-brand-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 14px;
+}
+.sidebar-brand-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(99, 102, 241, 0.25));
+    border: 1px solid rgba(14, 165, 233, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.15);
+}
+.sidebar-brand-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #F8FAFC;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+.sidebar-brand-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #38BDF8;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Sidebar Divider & Section Headers */
+.sidebar-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    margin: 16px 0;
+}
+.sidebar-section-header {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #64748B;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+/* Sidebar Class Indicator Items */
+.sidebar-class-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    margin-bottom: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    font-size: 0.82rem;
+    color: #CBD5E1;
+}
+.sidebar-class-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.sidebar-class-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Sidebar Info Card */
+.sidebar-info-card {
+    background: #0E1626;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #8B98AD;
+}
+.sidebar-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.sidebar-info-row:last-child {
+    border-bottom: none;
+}
+.sidebar-info-key {
+    color: #64748B;
+}
+.sidebar-info-val {
+    color: #CBD5E1;
+    font-weight: 500;
+}
+
+/* ----- Hero Section ----- */
+.hero-container {
+    background: linear-gradient(145deg, #0D1626 0%, #090E1A 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 36px 36px 32px 36px;
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.35);
+}
+.hero-container::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+.hero-tag-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(14, 165, 233, 0.08);
+    border: 1px solid rgba(14, 165, 233, 0.28);
+    color: #38BDF8;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+}
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #FFFFFF !important;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+}
+.hero-subtitle {
+    font-size: 1.02rem;
+    color: #94A3B8 !important;
+    margin: 0;
+    max-width: 680px;
+    line-height: 1.6;
+}
+
+/* ----- Quick Spec Chips / Stat Bar ----- */
+.spec-chip {
+    background: #0E1626;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 14px 16px;
+    transition: border-color 0.2s ease;
+}
+.spec-chip:hover {
+    border-color: rgba(14, 165, 233, 0.25);
+}
+.spec-chip-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748B;
+    margin-bottom: 4px;
+}
+.spec-chip-value {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #F1F5F9;
+    letter-spacing: -0.01em;
+}
+
+/* ----- Disclaimer Banner ----- */
+.disclaimer-banner {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-left: 4px solid #F59E0B;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 18px 0 24px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: #CBD5E1;
+}
+.disclaimer-banner strong {
+    color: #FCD34D;
+}
+
+/* ----- Streamlit Bordered Containers (Cards) ----- */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #0E1626 !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Internal Container Padding Fix */
+div[data-testid="stVerticalBlockBorderWrapper"] > div {
+    padding: 8px 6px;
+}
+
+/* ----- File Uploader Customization ----- */
+[data-testid="stFileUploader"] {
+    background: #0B111F !important;
+    border: 1.5px dashed rgba(14, 165, 233, 0.25) !important;
+    border-radius: 14px !important;
+    padding: 1.25rem 1rem !important;
+    transition: all 0.2s ease !important;
+}
+[data-testid="stFileUploader"]:hover {
+    border-color: #0EA5E9 !important;
+    background: #0D1629 !important;
+}
+[data-testid="stFileUploader"] * {
+    color: #94A3B8 !important;
+}
+
+/* ----- Uploaded Image Frame & Info Strip ----- */
+.image-viewer-card {
+    background: #0B111F;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+}
+.image-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 0.78rem;
+    text-align: left;
+}
+.image-meta-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    padding: 6px 10px;
+}
+.image-meta-label {
+    font-size: 0.68rem;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.image-meta-val {
+    color: #E2E8F0;
+    font-weight: 600;
+}
+
+/* ----- Model Prediction Result Card ----- */
+.result-card {
+    background: #0E1626;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    padding: 26px 28px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+.result-card-accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+.result-card-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    color: #64748B;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+.result-card-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #FFFFFF !important;
+    letter-spacing: -0.02em;
+    margin: 4px 0 16px 0;
+}
+.result-score-container {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.result-score-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #F8FAFC;
+    letter-spacing: -0.03em;
+}
+.result-score-label {
+    font-size: 0.85rem;
+    color: #94A3B8;
+}
+
+/* Confidence Rating Pills */
+.conf-pill-high {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.32);
+    color: #34D399;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+.conf-pill-med {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.32);
+    color: #FBBF24;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+.conf-pill-low {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.32);
+    color: #F87171;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+/* ----- Softmax Probability Row ----- */
+.prob-row {
+    margin-bottom: 14px;
+}
+.prob-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.84rem;
+    margin-bottom: 6px;
+}
+.prob-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #E2E8F0;
+    font-weight: 600;
+}
+.prob-value {
+    color: #F8FAFC;
+    font-weight: 700;
+    font-size: 0.86rem;
+}
+.prob-bar-track {
+    width: 100%;
+    height: 8px;
+    background: #0B111F;
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+.prob-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+/* ----- Analysis Summary Table / Grid ----- */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+.summary-cell {
+    background: #0B111F;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+.summary-cell-title {
+    font-size: 0.7rem;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+.summary-cell-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #F1F5F9;
+}
+
+/* ----- Custom Download Button ----- */
+.stDownloadButton > button {
+    background: linear-gradient(135deg, #0284C7 0%, #2563EB 100%) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 10px !important;
+    padding: 0.65rem 1.4rem !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3) !important;
+    transition: all 0.2s ease !important;
+}
+.stDownloadButton > button:hover {
+    background: linear-gradient(135deg, #0369A1 0%, #1D4ED8 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4) !important;
+}
+
+/* Secondary Download Button Styling (Restrained PDF option) */
+.stDownloadButton > button[kind="secondary"],
+.stDownloadButton > button[data-testid="stBaseButton-secondary"] {
+    background: rgba(30, 41, 59, 0.7) !important;
+    color: #CBD5E1 !important;
+    border: 1px solid rgba(148, 163, 184, 0.25) !important;
+    box-shadow: none !important;
+}
+.stDownloadButton > button[kind="secondary"]:hover,
+.stDownloadButton > button[data-testid="stBaseButton-secondary"]:hover {
+    background: rgba(51, 65, 85, 0.9) !important;
+    color: #FFFFFF !important;
+    border-color: rgba(148, 163, 184, 0.4) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ----- Toast & Alert Box Tweaks ----- */
+div[data-testid="stAlert"] {
+    background: #0E1626 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+}
+div[data-testid="stToast"] {
+    background: #0E1626 !important;
+    border: 1px solid rgba(14, 165, 233, 0.3) !important;
+    border-radius: 12px !important;
+    color: #F8FAFC !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ----- Footer ----- */
+.footer-container {
+    margin-top: 48px;
+    padding: 24px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+    font-size: 0.8rem;
+    color: #64748B;
+    line-height: 1.6;
+}
+.footer-container b {
+    color: #94A3B8;
+}
+
+/* ----- Custom Scrollbar ----- */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #080C14;
+}
+::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
