@@ -341,7 +341,14 @@ Navigate to `http://localhost:8501` in your browser to interact with the contain
 * **Author:** **Anant Deshmukh**
 * **GitHub Profile:** [@anantdeshmukh2005-bot](https://github.com/anantdeshmukh2005-bot)
 * **Dataset Attribution:** The model was trained on the curated [Brain Tumor MRI Deduplicated Clean Version](https://www.kaggle.com/datasets/mylee77/brain-tumor-mri-deduplicated-clean-version) dataset by mylee77 on Kaggle, derived from the Figshare brain tumor dataset and Sartaj Bhuvaji et al.
-* **License Information:** No formal license file is included with the base repository. Dataset usage is governed by Kaggle and its original authors under CC BY-SA 4.0 / Public Domain.
+
+---
+
+## 📄 License
+
+The original source code in this project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+The brain MRI dataset and other third-party materials remain subject to their respective licenses and terms of use. The MIT License does not grant additional rights to those materials.
 
 ---
 
