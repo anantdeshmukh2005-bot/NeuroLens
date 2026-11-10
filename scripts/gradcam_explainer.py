@@ -428,6 +428,7 @@ def generate_gradcam_overlay(
 
     grads = tape.gradient(target_score, conv_features)
     explainer._validate_gradients(grads)
+    del tape
     t2 = time.perf_counter()
     t_stage2_fwd_grad_ms = (t2 - t1) * 1000.0
 
@@ -489,6 +490,7 @@ def generate_gradcam_overlay(
         "max_grad": float(np.max(grads_np)),
         "mean_abs_grad": float(np.mean(np.abs(grads_np)))
     }
+    del grads, grads_np
 
     return {
         "heatmap_raw": heatmap_raw,

@@ -9,7 +9,11 @@ FROM python:3.12-slim-bookworm
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PORT=8501 \
-    MPLCONFIGDIR=/tmp/matplotlib
+    MPLCONFIGDIR=/tmp/matplotlib \
+    OMP_NUM_THREADS=1 \
+    TF_NUM_INTRAOP_THREADS=1 \
+    TF_NUM_INTEROP_THREADS=1 \
+    TF_ENABLE_ONEDNN_OPTS=0
 
 # Install runtime system dependencies for OpenCV and health check curl
 RUN apt-get update && apt-get install -y --no-install-recommends \

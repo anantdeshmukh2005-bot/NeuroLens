@@ -8,8 +8,15 @@ Model: models/mobilenet_two_stage_final_unweighted.keras
 
 import os
 import io
+import gc
 import textwrap
 import tempfile
+
+# Single-threaded CPU configuration for low-resource cloud environments (Render Free)
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+os.environ.setdefault("TF_NUM_INTRAOP_THREADS", "1")
+os.environ.setdefault("TF_NUM_INTEROP_THREADS", "1")
+os.environ.setdefault("TF_ENABLE_ONEDNN_OPTS", "0")
 os.environ.setdefault("MPLCONFIGDIR", tempfile.gettempdir())
 
 import streamlit as st
@@ -20,10 +27,6 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
-
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from PIL import Image
 
 import sys
@@ -32,8 +35,6 @@ import sys
 _CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if _CURRENT_DIR not in sys.path:
     sys.path.insert(0, _CURRENT_DIR)
-
-from scripts.gradcam_explainer import generate_gradcam_overlay, GradCAMError
 
 # ==============================================================================
 # 1. Page Configuration
@@ -78,14 +79,20 @@ load_css()
 @st.cache_resource
 def get_model():
     """Load the verified retrained MobileNetV2 unweighted candidate model."""
+    import tensorflow as tf
+    try:
+        tf.config.threading.set_intra_op_parallelism_threads(1)
+        tf.config.threading.set_inter_op_parallelism_threads(1)
+    except Exception:
+        pass
+    from tensorflow.keras.models import load_model
+
     model_filename = "mobilenet_two_stage_final_unweighted.keras"
     script_dir = os.path.dirname(os.path.abspath(__file__))
     model_path = os.path.join(script_dir, "models", model_filename)
     if not os.path.exists(model_path):
         model_path = os.path.join("models", model_filename)
     return load_model(model_path)
-
-model = get_model()
 
 # ==============================================================================
 # 4. Class Mappings & Visual Theme Design Tokens
@@ -284,6 +291,7 @@ if uploaded_file is not None:
         uploaded_file.seek(0)
         file_bytes = uploaded_file.read()
         file_size_kb = len(file_bytes) / 1024.0
+        del file_bytes  # Immediately free raw byte buffer
 
         uploaded_file.seek(0)
         img = Image.open(uploaded_file).convert("RGB")
@@ -291,6 +299,10 @@ if uploaded_file is not None:
         orig_w, orig_h = img.size
 
         with st.spinner("Processing MRI tensor and executing MobileNetV2 inference..."):
+            model = get_model()
+            from tensorflow.keras.preprocessing import image
+            from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+
             # Preprocessing strictly using MobileNetV2 canonical preprocess_input [-1.0, 1.0]
             img_resized = img.resize((224, 224))
             img_array = image.img_to_array(img_resized)
@@ -333,6 +345,7 @@ if uploaded_file is not None:
     gradcam_error = None
     try:
         with st.spinner("Generating Grad-CAM visual explanation..."):
+            from scripts.gradcam_explainer import generate_gradcam_overlay, GradCAMError
             gradcam_result = generate_gradcam_overlay(
                 model=model,
                 preprocessed_tensor=img_array,
@@ -344,6 +357,15 @@ if uploaded_file is not None:
             )
     except Exception as cam_exc:
         gradcam_error = str(cam_exc)
+    finally:
+        # Free temporary preprocessed tensor and run garbage collection
+        del img_array
+        gc.collect()
+        try:
+            import ctypes
+            ctypes.CDLL("libc.so.6").malloc_trim(0)
+        except Exception:
+            pass
 
     st.write("")
 
@@ -611,7 +633,7 @@ if uploaded_file is not None:
         Uses existing matplotlib dependency without introducing new packages.
         """
         buf = io.BytesIO()
-        fig = plt.figure(figsize=(8.5, 11), dpi=300)
+        fig = plt.figure(figsize=(8.5, 11), dpi=150)
         fig.patch.set_facecolor('#FFFFFF')
         
         ax = fig.add_axes([0, 0, 1, 1])
@@ -771,10 +793,18 @@ if uploaded_file is not None:
         ax.text(0.06, 0.042, "NeuroLens · Brain MRI Classification Workspace  |  Authoritative Analysis Report", fontsize=8, color="#94A3B8", va="center")
         ax.text(0.94, 0.042, "File Format: PDF", fontsize=8, color="#94A3B8", ha="right", va="center")
         
-        fig.savefig(buf, format="pdf", dpi=300, facecolor=fig.get_facecolor(), edgecolor="none")
+        fig.savefig(buf, format="pdf", dpi=150, facecolor=fig.get_facecolor(), edgecolor="none")
         plt.close(fig)
         buf.seek(0)
-        return buf.getvalue()
+        pdf_data = buf.getvalue()
+        buf.close()
+        gc.collect()
+        try:
+            import ctypes
+            ctypes.CDLL("libc.so.6").malloc_trim(0)
+        except Exception:
+            pass
+        return pdf_data
 
     report_content = f"""===============================
 Brain Tumor Detection Report
